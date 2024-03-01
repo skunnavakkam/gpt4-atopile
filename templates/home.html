@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>main.py</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-8 h-screen">
+    <div class="container mx-auto h-full">
+      <div class="flex flex-wrap md:flex-nowrap gap-4 h-full">
+        <!-- Left Column for Input, Prompt, Button, and Image -->
+        <form class="flex flex-col flex-1 gap-4" method="POST">
+          <input
+            type="text"
+            name="openai_key"
+            placeholder="openai key"
+            class="px-4 font-mono py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          />
+          <textarea
+            placeholder="Prompt"
+            name="prompt"
+            class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 h-36 focus:ring-indigo-500 focus:border-transparent resize-none h-24"
+          ></textarea>
+          <button
+            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            Go!
+          </button>
+          <div
+            class="border border-gray-300 rounded-md flex items-center justify-center h-full"
+          >
+            <span>image</span>
+          </div>
+        </form>
+        <!-- Right Column for Transcript -->
+        <div class="flex-1 md:w-1/2">
+          <textarea
+            placeholder="Transcript"
+            readonly
+            class="w-full h-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-transparent resize-none font-mono"
+          >
+{{ transcript }}</textarea
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
