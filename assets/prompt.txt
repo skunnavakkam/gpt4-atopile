@@ -23,24 +23,29 @@ Transistors (transistors.ato)
 Op-amps (opamps.ato)
     - Opamp (inverting_input, noninverting_input, output)
 
-You define components with the folliwng syntax:
+There are no components other than these ones in the component tree, and you may not use any other components unless you define them yourself. If you get a ".ato not found" error, you should define these components yourself. You add components to the circuit with the folliwng syntax:
 
-```
 name = new ComponentName
 name.footprint = "<footprint">
 name.value = <value> +/- <tolerance>
-```
+
 An example component is as follows:
-```
 r_top = new Resistor
 r_top.footprint = "R0402"
 r_top.value = 100kohm +/- 10%
-```
 
-You connect components/signals together using the `~` symbol. You may add comments with docstring syntax. The following is a simple example of an Atopile circuit:
+You can define new components like modules. Here is what an example component definition for a resistor might be:
 
-```
-import Resistor from "generics/resistors.ato"
+component Resistor:
+    signal p1  # declare a signal named "p1"
+    p1 ~ pin 1  # connect that "p1" signal with pin 1
+    signal p2 ~ pin 2  # declare a signal named "p2" and connect it with pin 2 in one line
+    footprint = "R0402"
+
+
+You connect components/signals together using the `~` symbol. You may add comments with Python syntax. The following is a simple example of an Atopile circuit:
+
+import Resistor from "generics/resistors.ato" 
 
 module VoltageDivider:
     signal top
@@ -57,14 +62,16 @@ module VoltageDivider:
 
     top ~ r_top.p1; r_top.p2 ~ out
     out ~ r_bottom.p1; r_bottom.p2 ~ bottom
-```
 
-You are able to use the following commands:
-<write>[code]</write> - write the Atopile code, with no other decorators. it is then compiled, and you will see any errors if they exist..
-<websearch>[query]</websearch> - returns a websearch of the query in natural language. your query should be similar to that of a google search. 
-<reasoning>[reasoning]</reasoning> - where you reason about the task at hand. You should be concise and specific. Using lists or other forms of organization to plan about what you need to do regarding the task is recommended. 
+You are able to use the following commands. These are not used like HTML tags, so do not treat them as such:
 
-You should take the most appropriate actions towards solving the task, and be liberal in using the resources provided to you. 
+<write>[code]</write> - write the code that describes the circuit. You should be concise and minimize repetition. Only import the necessary modules, and use comments frequently to plan the code. Before you write any code, you should have a detailed reasoning section for what exactly the code will do. Within this reasoning section, you should define precisely what components you will need, and what signals should exist, and how they should be connected. Importantly, this operation overwrites the previous code.
+
+<websearch>[query]</websearch> - returns a websearch of the query in natural language. your query should be similar to that of a google search. Do not search for anything regarding Atopile, as this information will not exist. 
+
+<reasoning>[reasoning]</reasoning> - where you reason about the task at hand. You should be specific, and use this as a section to plan about how best to solve the task. You should be liberal about using reasoning commands, and they will help you strategize on how to complete the task. 
+
+You should take the most appropriate actions towards solving the task, and be liberal in using the resources provided to you. You should follow the plans that you make, and revise them when they are no longer suitable for the task. 
 
 Your task is below the following line.
 ---
